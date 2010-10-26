@@ -8,7 +8,6 @@ package gui;
 import com.sun.lwuit.CheckBox;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.Command;
-import javax.microedition.midlet.MIDletStateChangeException;
 
 /**
  * @author Jefferson
@@ -33,11 +32,6 @@ public class MontarPrato extends MainForm{
     public MontarPrato()
     {
         super();
-    }
-
-    public void startApp() throws MIDletStateChangeException {
-
-        super.startApp();
 
         f.setTitle("Montar Prato");
 
@@ -72,14 +66,11 @@ public class MontarPrato extends MainForm{
         f.addComponent(lQtdCal);
 
         f.show();
-
     }
 
-    public void pauseApp() {
-    }
+   
 
-    public void destroyApp(boolean unconditional) {
-    }
+   
 
     /*
     public void actionPerformed(ActionEvent arg0) {
