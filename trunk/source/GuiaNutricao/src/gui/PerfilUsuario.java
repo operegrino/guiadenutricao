@@ -8,8 +8,7 @@ package gui;
 import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
-import com.sun.lwuit.events.ActionEvent;
-import javax.microedition.midlet.MIDletStateChangeException;
+import com.sun.lwuit.layouts.BoxLayout;
 
 /**
  * @author Jefferson
@@ -36,13 +35,9 @@ public class PerfilUsuario extends MainForm {
     public PerfilUsuario()
     {
         super();
-    }
 
-    public void startApp() throws MIDletStateChangeException {
-
-        super.startApp();
         f.setTitle("Perfil do Usuário");
-
+        f.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
         //Adiciona Label e textField
 	lNome = new Label("Nome:");
 	tfNome = new TextField(15);
@@ -52,7 +47,7 @@ public class PerfilUsuario extends MainForm {
         tfDtNasc = new TextField(10);
         f.addComponent(lDtNasc);
         f.addComponent(tfDtNasc);
-        
+
         lAltura = new Label("Altura:");
         tfAltura = new TextField(4);
         f.addComponent(lAltura);
@@ -61,21 +56,21 @@ public class PerfilUsuario extends MainForm {
         tfPeso = new TextField(3);
         f.addComponent(lPeso);
         f.addComponent(tfPeso);
-        
+
         lQtdCaloria = new Label("Qtd.Caloria");
         tfQtdCaloria = new TextField(3);
         f.addComponent(lQtdCaloria);
         f.addComponent(tfQtdCaloria);
 
-/*
+
         lPesoAlcan = new Label("Peso Ideal");
         tfPesoAlcan = new TextField(3);
         f.addComponent(lPeso);
         f.addComponent(tfPesoAlcan);
-*/
+
         //Adiciona Label e Combobox
         lSexo = new Label("Sexo:");
-        String[] sx = {"M", "F"};  
+        String[] sx = {"M", "F"};
         cbSexo = new ComboBox(sx);
         f.addComponent(lSexo);
         f.addComponent(cbSexo);
@@ -89,11 +84,6 @@ public class PerfilUsuario extends MainForm {
         f.show();
     }
 
-    public void pauseApp() {
-    }
-
-    public void destroyApp(boolean unconditional) {
-    }
 /*
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == exitCommand){
