@@ -2,13 +2,8 @@ package gui;
 
 import com.sun.lwuit.Command;
 import com.sun.lwuit.Form;
-import java.io.IOException;
 import com.sun.lwuit.events.ActionEvent;
 import com.sun.lwuit.events.ActionListener;
-import com.sun.lwuit.Form;
-import com.sun.lwuit.layouts.BoxLayout;
-import com.sun.lwuit.plaf.UIManager;
-import com.sun.lwuit.util.Resources;
 
 
 public class MainForm extends Form implements ActionListener{
