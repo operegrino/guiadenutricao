@@ -6,8 +6,8 @@
 package gui;
 
 import com.sun.lwuit.CheckBox;
-import com.sun.lwuit.Label;
 import com.sun.lwuit.Command;
+import com.sun.lwuit.Label;
 
 /**
  * @author Jefferson

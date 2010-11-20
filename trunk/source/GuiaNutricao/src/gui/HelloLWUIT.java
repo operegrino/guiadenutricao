@@ -2,14 +2,15 @@ package gui;
 
 import java.io.IOException;
 
+import javax.microedition.lcdui.Display;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
+
 
 import com.sun.lwuit.Button;
 import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Command;
 import com.sun.lwuit.Component;
-import com.sun.lwuit.Display;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Image;
 import com.sun.lwuit.Label;
@@ -47,7 +48,8 @@ public class HelloLWUIT extends MIDlet implements ActionListener{
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
-		 Display.init(this);  
+		
+		//Display.init(this);
 		   
 		     // TEMA  
 		     try {  
