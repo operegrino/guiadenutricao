@@ -28,30 +28,30 @@ public class TestandoClasseCatgItemMIDlet extends MIDlet {
 		
 		CategoriaItem catgItem = new CategoriaItem();
 		
-		catgItem.setNome("Latcinios");
-		CategoriaItem catgItem2 = new CategoriaItem();
-		catgItem2.setNome("Frios");
-		
-		
+//		catgItem.setNome("Latcinios");
+//		CategoriaItem catgItem2 = new CategoriaItem();
+//		catgItem2.setNome("Frios");
+//		
+//		
 //		ctrlCatg.cadastrarCatgItem(catgItem);
 //		ctrlCatg.cadastrarCatgItem(catgItem2);
 		
-//		ArrayList list = new ArrayList();
-//		list = ctrlCatg.consultarTodasCategoriasItens();
-//		int tamanho = list.size();
-//		System.out.println("tamanho : " + tamanho);
-//		int i = 0;
-//		
-//		while (i < tamanho){
-//
-//			catgItem = (CategoriaItem)list.get(i);
-//			System.out.println(catgItem.getNome());
-//			i++;
-//		}
+		ArrayList list = new ArrayList();
+		list = ctrlCatg.consultarTodasCategoriasItens();
+		int tamanho = list.size();
+		System.out.println("tamanho : " + tamanho);
+		int i = 0;
+		
+		while (i < tamanho){
+
+			catgItem = (CategoriaItem)list.get(i);
+			System.out.println(catgItem.getNome());
+			i++;
+		}
 	
 //		System.out.println("passou2");
 		
-//		catgItem = ctrlCatg.buscarCategoriaItem(1);
+//		catgItem = ctrlCatg.buscarCategoriaItem(2);
 //		System.out.println(catgItem.getId());
 //		System.out.println(catgItem.getNome());
 		

@@ -5,6 +5,7 @@ import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
 
 import persistencia.BDItem;
+import Util.ArrayList;
 import classe.basica.Item;
 
 
@@ -59,7 +60,8 @@ public class ControladorItem {
     	BDItem.consultarPorCatg(idCatg);    
     	}
     
-    public void consultarTodosItens() {
-    	BDItem.consultarTodosItens();
+    public ArrayList consultarTodosItens() {
+    	
+    	return BDItem.consultarTodosItens();
     }
 }

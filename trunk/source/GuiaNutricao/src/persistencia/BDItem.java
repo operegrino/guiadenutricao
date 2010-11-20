@@ -14,6 +14,8 @@ import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
 
+import Util.ArrayList;
+
 import classe.basica.Item;
 
 
@@ -96,17 +98,17 @@ public class BDItem {
 		}
 		
 	
-	public void consultarTodosItens() {
+	public ArrayList consultarTodosItens() {
 		
 
 		RecordStore rs = SingItem.getInstancia();
 		Item item = new Item();
-		 
+		 ArrayList retorno = new ArrayList();
 				try{
 						RecordEnumeration re = rs.enumerateRecords(null, null, false);  
 				         while (re.hasNextElement()) {  
 				        	 item = this.buscarItem(re.nextRecordId());
-								System.out.println(item.getNome());
+				        	 retorno.add(item);
 				         }
 				         
 							} catch (InvalidRecordIDException e) {
@@ -116,7 +118,7 @@ public class BDItem {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							} 
-		
+		return retorno;
 	}
 	
 	public void  excluirRS (){
