@@ -8,9 +8,11 @@ package gui;
 import com.sun.lwuit.Button;
 import com.sun.lwuit.CheckBox;
 import com.sun.lwuit.ComboBox;
+import com.sun.lwuit.Command;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
+import com.sun.lwuit.events.ActionEvent;
 
 /**
  * @author Jefferson
@@ -30,14 +32,11 @@ public class MontarPrato extends MainForm{
 	ComboBox cbTpIngrediente;
 	Button btFiltrar;
 	
-	
-    public MontarPrato(){}
-    
-    public MontarPrato(String nome)
+    public MontarPrato()
     {
     	
         super();
-        this.setTitle(nome);
+        this.setTitle(this.getName());
         lNomePrato     = new Label("Nome do Prato");
         txNomePrato    = new TextField();
         lTipoRefeicao  = new Label("Tipo de Refeição");
@@ -65,27 +64,38 @@ public class MontarPrato extends MainForm{
         this.addComponent(ckValor2);
         this.addComponent(lValorCalorico);
 
+        this.addCommandListener(this);
         this.show();
         
     }
 
 	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Montar Prato";
 	}
 
 	protected void execute(Form f) {
 		// TODO Auto-generated method stub
 		
 	}
-   
 
-    /*
-    public void actionPerformed(ActionEvent arg0) {
-        throw new UnsupportedOperationException("Not supported yet.");
-     *
-     * Local para implementar os Commands.
-     *
-    }
-    */
+	public void actionPerformed(ActionEvent e) {
+		Command cmd = e.getCommand();
+		switch (cmd.getId()) {
+		case RUN_COMMAND:{
+			System.out.println("click.entrou: "+this.getName());
+			break;
+		}
+		case BACK_COMMAND:{
+			MainForm f = Menu.getSingleton();
+			f.show();
+			break;
+		}
+		default:{}
+		}
+		
+
+		
+	}
+
 }

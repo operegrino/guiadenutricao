@@ -3,9 +3,11 @@ package gui;
 import negocio.ControladorCategoriaItem;
 
 import com.sun.lwuit.ComboBox;
+import com.sun.lwuit.Command;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
+import com.sun.lwuit.events.ActionEvent;
 
 public class AdicionarIngrediente extends MainForm{
 
@@ -20,12 +22,11 @@ public class AdicionarIngrediente extends MainForm{
 	private String [] arrayCatg;
 	private ControladorCategoriaItem ctrlCatg = new ControladorCategoriaItem();
 	
-	public AdicionarIngrediente(){}
-	
-	public AdicionarIngrediente(String nome)
+	public AdicionarIngrediente()
 	{
 		super();
-		this.setTitle(nome);
+		this.setTitle(this.getName());
+		this.addCommandListener(this);
 		
 		lNome           = new Label("Nome");
 		txNome          = new TextField();
@@ -53,6 +54,27 @@ public class AdicionarIngrediente extends MainForm{
 	
 	protected void execute(Form f) {
 		// TODO Auto-generated method stub
+		
+	}
+	public String getName() {		
+		return "Adicionar Ingrediente";
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		Command cmd = e.getCommand();
+		switch (cmd.getId()) {
+		case RUN_COMMAND:{
+			System.out.println("click.entrou");
+			break;
+		}
+		case BACK_COMMAND:{				
+			MainForm f = Menu.getSingleton();
+			f.show();
+			break;
+		}
+		default:{}
+		}
+		
 		
 	}
 	

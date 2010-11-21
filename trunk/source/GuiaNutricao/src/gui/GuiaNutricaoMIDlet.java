@@ -3,16 +3,21 @@ package gui;
 import java.io.IOException;
 import java.util.Hashtable;
 
+import com.sun.lwuit.ButtonGroup;
+import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Command;
 import com.sun.lwuit.Display;
 import com.sun.lwuit.Form;
+import com.sun.lwuit.RadioButton;
 import com.sun.lwuit.TextArea;
 import com.sun.lwuit.events.ActionEvent;
 import com.sun.lwuit.events.ActionListener;
 import com.sun.lwuit.layouts.BorderLayout;
+import com.sun.lwuit.plaf.Style;
 import com.sun.lwuit.plaf.UIManager;
 import com.sun.lwuit.util.Resources;
-
+import com.sun.lwuit.events.ActionEvent;
+import com.sun.lwuit.events.ActionListener;
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 import gui.MainForm;
@@ -21,6 +26,7 @@ import gui.MainForm;
 public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 
 	private static MainForm form;
+	
 	private static final int EXIT_COMMAND = 1;
     private static final int RUN_COMMAND = 2;
     private static final int BACK_COMMAND = 3;
@@ -30,16 +36,10 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
     private static final Command exitCommand = new Command("Sair", EXIT_COMMAND);
     private static final Command backCommand = new Command("Voltar", BACK_COMMAND);
     private static final Command aboutCommand = new Command("Sobre", ABOUT_COMMAND);
+   
+    private static int selectedIndex  = 0;    
+    private final ButtonGroup btGroup = new ButtonGroup();
     
-    private static final MainForm[] Tela = {
-//    	new PerfilUsuario("Perfil do Usuário"), new MontarPrato("Montar Prato")
-//         PERFIL_USUARIO, MONTAR_PRATO
-//        new TransitionDemo(), new FontDemo(), new TabbedPaneDemo(), new DialogDemo(), new LayoutDemo(), new ScrollDemo()
-    };
-    
-    private MainForm currentDisplay;
-    private Hashtable MainFormHash = new Hashtable();
-    private static MainForm formPrincipal;
 	
 	public GuiaNutricaoMIDlet() {
 		// TODO Auto-generated constructor stub
@@ -54,7 +54,31 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 		// TODO Auto-generated method stub
 
 	}
+	
+	private RadioButton createRB(String label, ButtonGroup g, Form f) {
+        RadioButton b = new RadioButton(label);        
+        g.add(b);
+        f.addComponent(b);
+        return b;
+    }
+	
 
+	private void AddCommands(Form f)
+	{
+		f.addCommand(runCommand);
+		f.addCommand(exitCommand);
+		f.addCommand(backCommand);
+		f.addCommand(aboutCommand);		
+        		
+	}
+	
+	private void AddCommandCadBasico(Form f)
+	{
+		f.addCommand(runCommand);
+		f.addCommand(backCommand);
+	}
+    
+	
 	protected void startApp() throws MIDletStateChangeException {
 		
 		Display.init(this);
@@ -65,51 +89,68 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
         } catch (IOException ioe) {
             System.out.println("Não foi possível carregar o tema.");
         }
-		
-        //form = new Menu("Tela Inicial");
-        //form = new PerfilUsuario("Perfil do Usuário");
-        //form = new MontarPrato("Montar Prato");
-		//form = new TipoIngrediente("Tipo de Ingrediente");
-		//form = new AdicionarIngrediente("Adicionar Ingrediente");
-		//form = new MonitorDieta("Monitor da Dieta Alimentar");  
-        //form = new CadastroCategoriaItem("Cadastro de Categoria Itens");
-        //form = new CadastroItens("Cadastrar Item");
-        form = new ConsultarCaloriasItens("Consultar Calorias");
-        /*
-        for(int i=0; i<Tela.length; i++)
-        {        	
-        	form.addComponent(new CheckBox(Tela[i]));
-        }
-        */        
-		form.addCommand(runCommand);
-		form.addCommand(exitCommand);
-		form.addCommand(backCommand);
-		form.addCommand(aboutCommand);
-		form.addCommandListener(this);
+        
+        form = Menu.getSingleton();                
+        createRB("Adicionar Ingrediente", btGroup, form);
+        createRB("Monitor Dieta", btGroup, form);
+        createRB("Montar Prato", btGroup, form);
+        createRB("Perfil Usuário", btGroup, form);
+        createRB("Tipo Ingrediente", btGroup, form);
+        createRB("Refeição", btGroup, form);        
+        createRB("Relatório", btGroup, form);
+        
+        btGroup.setSelected(selectedIndex);        
+        
+        this.AddCommands(form);
+		form.addCommandListener(this);		
 		form.show();
 
 	}
-	
-	void setTelaInicial()
-	{
-		formPrincipal = new MainForm(this,"Tela Principal") {
-			
-			protected void execute(Form f) {
-				// TODO Auto-generated method stub
-				
-			}
-		};
-		
-		// chamada das telas
-	}
+
 
 	public void actionPerformed(ActionEvent evt) {
 		
 		Command cmd = evt.getCommand();
         switch (cmd.getId()) {
         case RUN_COMMAND:
-//            currentDemo = ((Demo) (demosHash.get(mainMenu.getFocused())));
-//            currentDemo.run(backCommand, this);        	
+        	switch(btGroup.getSelectedIndex())
+			{        	   
+				case 0:{
+				    form = new AdicionarIngrediente();	
+				    AddCommandCadBasico(form);
+					break;
+				}
+				case 1:{
+					form = new MonitorDieta();
+					AddCommandCadBasico(form);
+					break;
+				}
+				case 2:{
+					form = new MontarPrato();
+					AddCommandCadBasico(form);
+					break;
+				}
+				case 3:{
+					form = new PerfilUsuario();
+					AddCommandCadBasico(form);
+					break;
+				}
+				case 4:{
+					form = new TipoIngrediente();
+					AddCommandCadBasico(form);
+					break;
+				}
+				case 5:{
+					form = new Refeicao();
+					AddCommandCadBasico(form);
+					break;
+				}
+				default:{
+					System.out.println("default");
+					break;
+				}
+			}
+			selectedIndex = btGroup.getSelectedIndex();			
             break;
         case EXIT_COMMAND:
             notifyDestroyed();
@@ -132,7 +173,7 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
             aboutForm.addComponent(BorderLayout.CENTER, aboutText);
             aboutForm.addCommand(new Command("Back") {
                 public void actionPerformed(ActionEvent evt) {
-//                    form.show();
+                    form.show();
                 }
             });
             aboutForm.show();
