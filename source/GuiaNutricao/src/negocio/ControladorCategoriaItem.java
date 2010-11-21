@@ -41,7 +41,7 @@ public class ControladorCategoriaItem {
 		
 	}
 
-	 public ArrayList consultarTodasCategoriasItens() {
+	 public String[] consultarTodasCategoriasItens() {
 		 
 		return  BDCatg.consultarTodasCategoriasItens();
 	 }

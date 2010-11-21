@@ -2,11 +2,12 @@ import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
 import negocio.ControladorCategoriaItem;
-import Util.ArrayList;
+import Util.UtilFuncoes;
 import classe.basica.CategoriaItem;
 
 
 public class TestandoClasseCatgItemMIDlet extends MIDlet {
+
 
 	public TestandoClasseCatgItemMIDlet() {
 		// TODO Auto-generated constructor stub
@@ -27,28 +28,29 @@ public class TestandoClasseCatgItemMIDlet extends MIDlet {
 		ControladorCategoriaItem ctrlCatg = new ControladorCategoriaItem();
 		
 		CategoriaItem catgItem = new CategoriaItem();
+		UtilFuncoes util = new UtilFuncoes();
 		
-//		catgItem.setNome("Latcinios");
-//		CategoriaItem catgItem2 = new CategoriaItem();
-//		catgItem2.setNome("Frios");
+		catgItem.setNome("Frios");
+		CategoriaItem catgItem2 = new CategoriaItem();
+		catgItem2.setNome("Legumes");
+		
+		
+		ctrlCatg.cadastrarCatgItem(catgItem);
+		ctrlCatg.cadastrarCatgItem(catgItem2);
+		
+//		String[] list;
+//		list = ctrlCatg.consultarTodasCategoriasItens();
+//		int tamanho = list.length;
+//		System.out.println("tamanho : " + tamanho);
+//		int i = 0;
 //		
+//		while (i < tamanho){
+//			System.out.println(list[i]);
+//			i++;
+//		}
 //		
-//		ctrlCatg.cadastrarCatgItem(catgItem);
-//		ctrlCatg.cadastrarCatgItem(catgItem2);
-		
-		ArrayList list = new ArrayList();
-		list = ctrlCatg.consultarTodasCategoriasItens();
-		int tamanho = list.size();
-		System.out.println("tamanho : " + tamanho);
-		int i = 0;
-		
-		while (i < tamanho){
-
-			catgItem = (CategoriaItem)list.get(i);
-			System.out.println(catgItem.getNome());
-			i++;
-		}
-	
+//		System.out.println(util.capturarId(list[0]));
+//	
 //		System.out.println("passou2");
 		
 //		catgItem = ctrlCatg.buscarCategoriaItem(2);

@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 import javax.microedition.rms.InvalidRecordIDException;
@@ -42,8 +44,24 @@ public class TestandoClasseItemMIDlet extends MIDlet {
 //	ctrlItem.cadastrarItem(it4);
 //
 			
-//	ctrlItem.consultarTodosItens();
-	//ctrlItem.consultarPorCatg(5);
+	// ctrlItem.consultarTodosItens();
+	
+//	 try {
+//		 
+//		String[] itens = ctrlItem.consultarPorCatg(5);
+//		System.out.println(itens[0]);
+//		System.out.println(itens[1]);
+//		
+//	} catch (InvalidRecordIDException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	} catch (IOException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	} catch (RecordStoreException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
 		    
 //		  
 //			Item item1 = ctrlItem.buscarItem(3);
@@ -62,7 +80,7 @@ public class TestandoClasseItemMIDlet extends MIDlet {
 //				e.printStackTrace();
 //			}
 			
-//            Item item1 = ctrlItem.buscarItem(1);
+//            Item item1 = ctrlItem.buscarItem(2);
 //			
 //		    System.out.println(item1.getNome());
 //		    System.out.println(item1.getQtdPorcao());

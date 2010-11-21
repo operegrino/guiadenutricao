@@ -1,5 +1,7 @@
 package negocio;
 
+import java.io.IOException;
+
 import javax.microedition.rms.InvalidRecordIDException;
 import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
@@ -55,10 +57,15 @@ public class ControladorItem {
 
     	BDItem.excluirRS();
     }
-    public void consultarPorCatg(int idCatg){
+    
+    
+    public String[] consultarPorCatg(int idCatg) throws InvalidRecordIDException, IOException, RecordStoreException{
     	
-    	BDItem.consultarPorCatg(idCatg);    
-    	}
+    	return BDItem.consultarPorCatg(idCatg);   
+    }
+    
+    
+    
     
     public ArrayList consultarTodosItens() {
     	
