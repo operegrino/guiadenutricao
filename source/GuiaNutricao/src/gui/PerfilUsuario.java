@@ -6,9 +6,11 @@
 package gui;
 
 import com.sun.lwuit.ComboBox;
+import com.sun.lwuit.Command;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
+import com.sun.lwuit.events.ActionEvent;
 import com.sun.lwuit.layouts.BoxLayout;
 
 /**
@@ -32,15 +34,10 @@ public class PerfilUsuario extends MainForm{
     TextField tfPesoAlcan;
     ComboBox cbSexo;
     ComboBox cbTpDieta;
-    
-    public PerfilUsuario()
-    {
-    	super();
-    }
 
 	public String getName() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Perfil do Usuário";
 	}
 
 	protected void execute(Form f) {
@@ -49,11 +46,11 @@ public class PerfilUsuario extends MainForm{
 	}
     
 
-    public PerfilUsuario(String name)
+    public PerfilUsuario()
     {
     	super();
 
-        this.setTitle(name);
+        this.setTitle(this.getName());
         this.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
         this.setScrollableX(true);
         //Adiciona Label e textField
@@ -95,23 +92,30 @@ public class PerfilUsuario extends MainForm{
         this.addComponent(lTpDieta);
         this.addComponent(cbTpDieta);
 
+        this.addCommandListener(this);
         //exibe o form
         this.show();
        
     }
 
-/*
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == exitCommand){
-	  notifyDestroyed(); //notifica a destruï¿½ï¿½ï¿½o da aplicaï¿½ï¿½o ao gerenciador
-	  try {
-	    destroyApp(true);
-	  } catch (Exception e1) {
-	    e1.printStackTrace();
-          }  //destroï¿½ a aplicaï¿½ï¿½o
+	public void actionPerformed(ActionEvent e) {
+		Command cmd = e.getCommand();
+		switch (cmd.getId()) {
+		case RUN_COMMAND:{
+			System.out.println("click.entrou: "+this.getName());
+			break;
+		}
+		case BACK_COMMAND:{
+			MainForm f = Menu.getSingleton();
+			f.show();
+			break;
+		}
+		default:{}
+		}
+		
+
+		
 	}
-    }
-*/
-    
+  
 
 }

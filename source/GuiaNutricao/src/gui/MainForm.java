@@ -10,25 +10,25 @@ import com.sun.lwuit.layouts.BoxLayout;
 import com.sun.lwuit.plaf.UIManager;
 
 
-public abstract class MainForm extends Form {
-  	  
-	Command exitCommand;  
-	private GuiaNutricaoMIDlet parent;
+public abstract class MainForm extends Form implements ActionListener {
+  	
+	public static final int EXIT_COMMAND = 1;
+    public static final int RUN_COMMAND = 2;
+    public static final int BACK_COMMAND = 3;
+    public static final int ABOUT_COMMAND = 4;
+    
 	
-	/**
-     * returns the name of the demo to display in the list
-     */
-    //public abstract String getName();
+	private GuiaNutricaoMIDlet parent;	
+    public abstract String getName();
     
     public MainForm(){
     	this.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
     }
 	
-	public MainForm(GuiaNutricaoMIDlet parent, String title) {
+	public MainForm(GuiaNutricaoMIDlet parent) {
 
 		this.parent = parent;
-//	    this.setTitle(title);
-	    this.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+	    this.setLayout(new BoxLayout(BoxLayout.Y_AXIS));	    
 
 	}
 
@@ -86,19 +86,7 @@ public abstract class MainForm extends Form {
     	
     }
     
-	public void actionPerformed(ActionEvent e) {
-	
-//	  if(e.getSource() == exitCommand){
-//              notifyDestroyed(); //notifica a destru���o da aplica��o ao gerenciador
-//	      try {
-//                 destroyApp(true);
-//	      } catch (MIDletStateChangeException e1) {
-//                 e1.printStackTrace();
-//	      }
-//	  }
-
-		
-	}
+	public abstract void actionPerformed(ActionEvent e);
 
 
 }
