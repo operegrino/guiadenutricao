@@ -12,6 +12,7 @@ import com.sun.lwuit.events.ActionListener;
 import com.sun.lwuit.layouts.BorderLayout;
 import com.sun.lwuit.plaf.UIManager;
 import com.sun.lwuit.util.Resources;
+
 import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 import gui.MainForm;
@@ -57,17 +58,17 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 	protected void startApp() throws MIDletStateChangeException {
 		
 		Display.init(this);
-		/*
+		
 		try {
             Resources r = Resources.open("/tema/javaTheme.res");
             UIManager.getInstance().setThemeProps(r.getTheme(r.getThemeResourceNames()[0]));	        
         } catch (IOException ioe) {
             System.out.println("Não foi possível carregar o tema.");
         }
-		*/
-        //form = new Menu("Tela Inicial");
+		
+        form = new Menu("Tela Inicial");
         //form = new PerfilUsuario("Perfil do Usuário");
-        form = new MontarPrato("Montar Prato");
+        //form = new MontarPrato("Montar Prato");
 		//form = new TipoIngrediente("Tipo de Ingrediente");
 		//form = new AdicionarIngrediente("Adicionar Ingrediente");
 		//form = new MonitorDieta("Monitor da Dieta Alimentar");   

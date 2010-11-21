@@ -1,29 +1,21 @@
 package classe.basica;
 
 public class CategoriaItem {
-
-	 String nome;
-	 int id;
-	 
-	 public CategoriaItem(){
-		 
-	 }
-	 
-	 public CategoriaItem(String nome){
-		 this.nome = nome;
-	 }
-	 
-	 
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+	
+	private int Id;
+	private String Nome;
+	
 	public int getId() {
-		return id;
+		return Id;
 	}
 	public void setId(int id) {
-		this.id = id;
+		Id = id;
 	}
+	public String getNome() {
+		return Nome;
+	}
+	public void setNome(String nome) {
+		Nome = nome;
+	}
+
 }
