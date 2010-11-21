@@ -16,6 +16,7 @@ import javax.microedition.rms.RecordStoreNotOpenException;
 
 import Util.ArrayList;
 
+
 import classe.basica.Item;
 
 
@@ -100,7 +101,6 @@ public class BDItem {
 	
 	public ArrayList consultarTodosItens() {
 		
-
 		RecordStore rs = SingItem.getInstancia();
 		Item item = new Item();
 		 ArrayList retorno = new ArrayList();
@@ -134,41 +134,75 @@ public class BDItem {
 		
 	}
 	
-	public void consultarPorCatg(final int idCatg){
+	
+	
+	
+	public String[] consultarPorCatg(final int idCatg) throws IOException, InvalidRecordIDException, RecordStoreException{
 		
 		RecordStore rs = SingItem.getInstancia();
-		
+		 
+		 RecordFilter filter;
+		 
 	//criando filtro	
-	RecordFilter filter = new RecordFilter( ) {
-			    public boolean matches(byte[] data) {
-			        try {
-						DataInputStream is = new DataInputStream(new ByteArrayInputStream(data));
-						Item item = new Item();
-						
-						item.setNome(is.readUTF());
-						item.setCodCategoria(is.readInt());
-			            return item.getCodCategoria() == idCatg;
-			        } catch (IOException ex) {
-			           
-			            return false;
-			        }
-			    }
-			};
-			try {
-				
-				RecordEnumeration enum = rs.enumerateRecords(filter, null, false);
-				
+		 filter = this.criarFiltroCategoria(idCatg);
+			
+		 RecordEnumeration enum = rs.enumerateRecords(filter, null, false);
+			int tamanho = enum.numRecords();
+			String[] retorno = new String[tamanho];
+			Item item2 = new Item();
+			int i = 0;
+			
 				while (enum.hasNextElement( )) {
 					
 				    byte[] record = enum.nextRecord( );
 				    ByteArrayInputStream bais = new ByteArrayInputStream(record);
 				    DataInputStream is = new DataInputStream(bais);
-				    System.out.println("Name: <" + is.readUTF( ) + ">");
+				    
+				    item2.setNome(is.readUTF());
+					item2.setCodCategoria(is.readInt());
+					item2.setVitamina(is.readUTF());
+					item2.setQtdPorcao(is.readInt());
+					item2.setValorCalorico(is.readDouble());
+					item2.setId(is.readInt());
+				    
+					
+					retorno[i] = item2.getId()+"- "+ item2.getNome();
+				    i++;
 				    is.close( );
 				}
+				
 				enum.destroy( );
-			} catch (Exception e) {	
-			}		
+			
+			return retorno;
+	}
+	
+	
+	
+	private RecordFilter criarFiltroCategoria(final int idCatg){
+		
+		RecordFilter filter = new RecordFilter( ) {
+			
+		    public boolean matches(byte[] data) {
+		        try {
+					DataInputStream is = new DataInputStream(new ByteArrayInputStream(data));
+					Item item = new Item();
+					
+					item.setNome(is.readUTF());
+					item.setCodCategoria(is.readInt());
+					item.setVitamina(is.readUTF());
+					item.setQtdPorcao(is.readInt());
+					item.setValorCalorico(is.readDouble());
+					item.setId(is.readInt());
+					
+		            return item.getCodCategoria() == idCatg;
+		        } catch (IOException ex) {
+		           
+		            return false;
+		        }
+		    }
+		   
+		};
+		return filter;
 	}
 	
 	

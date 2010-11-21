@@ -1,5 +1,7 @@
 package gui;
 
+import negocio.ControladorCategoriaItem;
+
 import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
@@ -7,16 +9,19 @@ import com.sun.lwuit.TextField;
 
 public class AdicionarIngrediente extends MainForm{
 
-	Label lNome;
-	TextField txNome;
-	Label lValorCalorico;
-	TextField txValorCalorico;
-	Label lTpIngrediente;
-	ComboBox cbTpIngrediente;
-	Label lPorcaoGrama;
-	TextField txPorcaoGrama;
+	private Label lNome;
+	private TextField txNome;
+	private Label lValorCalorico;
+	private TextField txValorCalorico;
+	private Label lTpIngrediente;
+	private ComboBox cbTpIngrediente;
+	private Label lPorcaoGrama;
+	private TextField txPorcaoGrama;
+	private String [] arrayCatg;
+	private ControladorCategoriaItem ctrlCatg = new ControladorCategoriaItem();
 	
 	public AdicionarIngrediente(){}
+	
 	public AdicionarIngrediente(String nome)
 	{
 		super();
@@ -27,8 +32,10 @@ public class AdicionarIngrediente extends MainForm{
 		lValorCalorico  = new Label("Valor Calorico");
 		txValorCalorico = new TextField();
 		lTpIngrediente  = new Label("Tipo de Ingrediente");
-		String[] valor  = {"A", "B", "C"};
-		cbTpIngrediente = new ComboBox(valor);
+		
+		arrayCatg = this.ctrlCatg.consultarTodasCategoriasItens();
+		this.cbTpIngrediente = new ComboBox(arrayCatg);
+		
 		lPorcaoGrama    = new Label("Porção em Grama");
 		txPorcaoGrama   = new TextField();
 		

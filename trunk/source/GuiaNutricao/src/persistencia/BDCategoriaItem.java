@@ -10,13 +10,18 @@ import javax.microedition.rms.InvalidRecordIDException;
 import javax.microedition.rms.RecordEnumeration;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
+import javax.microedition.rms.RecordStoreNotOpenException;
 
 import Util.ArrayList;
+
 import classe.basica.CategoriaItem;
 
 
 public class BDCategoriaItem {
 
+	private int tamanho;
+	
+	
   public void cadastrarCatgItem (CategoriaItem catgItem){
  
 		
@@ -93,20 +98,29 @@ public class BDCategoriaItem {
 		System.out.println("excluido id: " + catgItem.getId());
 	}
 
-  public ArrayList consultarTodasCategoriasItens() {
+  public String[] consultarTodasCategoriasItens() {
 		
 		
 		RecordStore rs = SingCatgItem.getInstancia();
 		 CategoriaItem catgItem = new CategoriaItem();
-		 ArrayList retorno = new ArrayList();
+		
+		  try {
+			tamanho = rs.getNumRecords();
+		} catch (RecordStoreNotOpenException e1) {
+			e1.printStackTrace();
+		}
+		
+		 String[] retorno = new String[tamanho];
+		 int i = 0;
+		
 		 
 				try{
 						RecordEnumeration re = rs.enumerateRecords(null, null, false);  
 				         while (re.hasNextElement()) {  
 				        	 catgItem = this.buscarCategoriaItem(re.nextRecordId());
-				        	 retorno.add(catgItem);
-				        	 System.out.println("*");
-								
+				        	 retorno[i] = catgItem.getId()+"- " + catgItem.getNome();
+				        	 
+								i++;
 				         }
 				         
 							} catch (InvalidRecordIDException e) {

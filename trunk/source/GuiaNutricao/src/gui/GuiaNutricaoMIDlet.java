@@ -66,12 +66,15 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
             System.out.println("Não foi possível carregar o tema.");
         }
 		
-        form = new Menu("Tela Inicial");
+        //form = new Menu("Tela Inicial");
         //form = new PerfilUsuario("Perfil do Usuário");
         //form = new MontarPrato("Montar Prato");
 		//form = new TipoIngrediente("Tipo de Ingrediente");
 		//form = new AdicionarIngrediente("Adicionar Ingrediente");
-		//form = new MonitorDieta("Monitor da Dieta Alimentar");   
+		//form = new MonitorDieta("Monitor da Dieta Alimentar");  
+        //form = new CadastroCategoriaItem("Cadastro de Categoria Itens");
+        //form = new CadastroItens("Cadastrar Item");
+        form = new ConsultarCaloriasItens("Consultar Calorias");
         /*
         for(int i=0; i<Tela.length; i++)
         {        	
@@ -141,7 +144,9 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 	}
 	
 	private String getAboutText() {
-        return "Sobre o Guia de Nutrição";
+        return "Sobre o Guia de Nutricao";
     }
+
+	
 
 }
