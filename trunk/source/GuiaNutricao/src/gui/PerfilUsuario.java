@@ -6,6 +6,7 @@
 package gui;
 
 import com.sun.lwuit.ComboBox;
+import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
 import com.sun.lwuit.layouts.BoxLayout;
@@ -13,7 +14,7 @@ import com.sun.lwuit.layouts.BoxLayout;
 /**
  * @author Jefferson
  */
-public class PerfilUsuario extends MainForm {
+public class PerfilUsuario extends MainForm{
     
     Label lNome;
     Label lSexo;
@@ -31,57 +32,72 @@ public class PerfilUsuario extends MainForm {
     TextField tfPesoAlcan;
     ComboBox cbSexo;
     ComboBox cbTpDieta;
-
+    
     public PerfilUsuario()
     {
-        super();
+    	super();
+    }
 
-        f.setTitle("Perfil do Usuário");
-        f.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	protected void execute(Form f) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+
+    public PerfilUsuario(String name)
+    {
+    	super();
+
+        this.setTitle(name);
+        this.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
+        this.setScrollableX(true);
         //Adiciona Label e textField
-	lNome = new Label("Nome:");
-	tfNome = new TextField(15);
-	f.addComponent(lNome);
-	f.addComponent(tfNome);
+        lNome = new Label("Nome:");
+        tfNome = new TextField(15);
         lDtNasc = new Label("Data Nasc:");
         tfDtNasc = new TextField(10);
-        f.addComponent(lDtNasc);
-        f.addComponent(tfDtNasc);
-
         lAltura = new Label("Altura:");
         tfAltura = new TextField(4);
-        f.addComponent(lAltura);
-        f.addComponent(tfAltura);
         lPeso = new Label("Peso");
         tfPeso = new TextField(3);
-        f.addComponent(lPeso);
-        f.addComponent(tfPeso);
-
         lQtdCaloria = new Label("Qtd.Caloria");
         tfQtdCaloria = new TextField(3);
-        f.addComponent(lQtdCaloria);
-        f.addComponent(tfQtdCaloria);
-
-
         lPesoAlcan = new Label("Peso Ideal");
         tfPesoAlcan = new TextField(3);
-        f.addComponent(lPeso);
-        f.addComponent(tfPesoAlcan);
-
-        //Adiciona Label e Combobox
         lSexo = new Label("Sexo:");
         String[] sx = {"M", "F"};
         cbSexo = new ComboBox(sx);
-        f.addComponent(lSexo);
-        f.addComponent(cbSexo);
         lTpDieta = new Label("Tp Dieta");
         String[] tp = {"A","B","C"};
         cbTpDieta = new ComboBox(tp);
-        f.addComponent(lTpDieta);
-        f.addComponent(cbTpDieta);
+        
+        
+        this.addComponent(lNome);
+        this.addComponent(tfNome);
+        this.addComponent(lDtNasc);
+        this.addComponent(tfDtNasc);
+        this.addComponent(lAltura);
+        this.addComponent(tfAltura);
+        this.addComponent(lPeso);
+        this.addComponent(tfPeso);
+        this.addComponent(lQtdCaloria);
+        this.addComponent(tfQtdCaloria);
+
+        //this.addComponent(lPeso);
+        this.addComponent(tfPesoAlcan);        
+        this.addComponent(lSexo);
+        this.addComponent(cbSexo);
+        this.addComponent(lTpDieta);
+        this.addComponent(cbTpDieta);
 
         //exibe o form
-        f.show();
+        this.show();
+       
     }
 
 /*
@@ -95,7 +111,7 @@ public class PerfilUsuario extends MainForm {
           }  //destro� a aplica��o
 	}
     }
-
-    */
+*/
+    
 
 }
