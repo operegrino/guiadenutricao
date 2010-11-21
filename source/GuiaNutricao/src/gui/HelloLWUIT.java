@@ -22,7 +22,8 @@ import com.sun.lwuit.plaf.UIManager;
 import com.sun.lwuit.util.Resources;
 
 
-public class HelloLWUIT extends MIDlet implements ActionListener{
+//public class HelloLWUIT extends MIDlet implements ActionListener{
+public class HelloLWUIT {
 
 	Form f;  
 	Image image, imagem;  
@@ -53,7 +54,7 @@ public class HelloLWUIT extends MIDlet implements ActionListener{
 		   
 		     // TEMA  
 		     try {  
-		         Resources r = Resources.open("/imagens/javaTheme.res");  
+		         Resources r = Resources.open("/tema/javaTheme.res");  
 		         UIManager.getInstance().setThemeProps(r.getTheme(r.getThemeResourceNames()[0]));  
 		     } catch (IOException ioe) {  
 		         System.out.println("N�o foi poss�vel carregar o tema.");  
@@ -67,7 +68,7 @@ public class HelloLWUIT extends MIDlet implements ActionListener{
 		     //comando sair  
 		     exitCommand = new Command("Sair");  
 		     f.addCommand(exitCommand);  
-		     f.setCommandListener(this);
+//		     f.setCommandListener(this);
 		   
 		     // TEXTO  
 		     label = new Label("Texto");  
@@ -97,7 +98,7 @@ public class HelloLWUIT extends MIDlet implements ActionListener{
 		         imagem = Image.createImage("/imagens/musica.png");  
 		         pictureButton = new Button(imagem);  
 		         f.addComponent(pictureButton);  
-		         pictureButton.addActionListener(this);  
+//		         pictureButton.addActionListener(this);  
 		     } catch (IOException ex) {  
 		         ex.printStackTrace();  
 		     }  
@@ -127,7 +128,7 @@ public class HelloLWUIT extends MIDlet implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		 if(e.getSource() == exitCommand){  
-			        notifyDestroyed(); //notifica a destru���o da aplica��o ao gerenciador  
+//			        notifyDestroyed(); //notifica a destru���o da aplica��o ao gerenciador  
 			        try {
 						destroyApp(true);
 					} catch (MIDletStateChangeException e1) {
