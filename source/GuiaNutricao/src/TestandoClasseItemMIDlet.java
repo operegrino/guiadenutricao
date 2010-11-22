@@ -36,21 +36,36 @@ public class TestandoClasseItemMIDlet extends MIDlet {
 /*		
  * TESTE CADASTRO DE ITENS	
  */
-//    Item it2 = new Item ("ddd", 300, 700, "Ferro", 5);
-//    Item it3 = new Item ("eee", 300, 700, "Ferro", 5);
-//    Item it4 = new Item ("ccc", 300, 700, "Ferro", 6);
-//	ctrlItem.cadastrarItem(it2);
-//	ctrlItem.cadastrarItem(it3);
-//	ctrlItem.cadastrarItem(it4);
-//
+    Item it2 = new Item ("arroz", 300, 700, "Ferro", 5);
+    Item it3 = new Item ("Feijao", 300, 700, "Ferro", 5);
+    Item it4 = new Item ("Macarrao", 300, 700, "Ferro", 6);
+	ctrlItem.cadastrarItem(it2);
+	ctrlItem.cadastrarItem(it3);
+	ctrlItem.cadastrarItem(it4);
+////
 			
 	// ctrlItem.consultarTodosItens();
 	
 //	 try {
 //		 
-//		String[] itens = ctrlItem.consultarPorCatg(5);
-//		System.out.println(itens[0]);
-//		System.out.println(itens[1]);
+		String[] itens;
+		try {
+			itens = ctrlItem.consultarPorCatg(5);
+			System.out.println(itens[0]);
+			System.out.println(itens[1]);
+			
+			
+		} catch (InvalidRecordIDException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RecordStoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 //		
 //	} catch (InvalidRecordIDException e) {
 //		// TODO Auto-generated catch block

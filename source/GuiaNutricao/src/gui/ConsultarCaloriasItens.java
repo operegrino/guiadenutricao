@@ -13,6 +13,7 @@ import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.TextArea;
+import com.sun.lwuit.events.ActionEvent;
 
 public class ConsultarCaloriasItens extends MainForm {
 
@@ -36,7 +37,12 @@ public class ConsultarCaloriasItens extends MainForm {
 			 this.arrayCatg = this.ctrlCatg.consultarTodasCategoriasItens();
 			 this.cbTpIngrediente = new ComboBox(arrayCatg);
 			 arrayItensCtag = this.ctrlItem.consultarPorCatg(5);
-			
+			 int i = 0;
+			while (i < arrayItensCtag.length){
+				
+				System.out.println(arrayItensCtag[i]);
+				i++;
+			}
 			
 			 this.addComponent(lbDescricao);
 			 this.addComponent(cbTpIngrediente);
@@ -57,6 +63,16 @@ public class ConsultarCaloriasItens extends MainForm {
 	protected void execute(Form f) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

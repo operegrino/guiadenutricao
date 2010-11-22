@@ -1,5 +1,8 @@
 package gui;
 
+import negocio.ControladorCategoriaItem;
+import classe.basica.CategoriaItem;
+
 import com.sun.lwuit.Command;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
@@ -8,8 +11,9 @@ import com.sun.lwuit.events.ActionEvent;
 
 public class TipoIngrediente extends MainForm {
 	
-    Label lNomeIngrediente;
-    TextField txNomeIngrediente;
+	private Label lNomeIngrediente;
+    private TextField txNomeIngrediente;
+    private ControladorCategoriaItem ctrlCategoria = new ControladorCategoriaItem(); 
     
 
 
@@ -38,9 +42,16 @@ public class TipoIngrediente extends MainForm {
 
 	public void actionPerformed(ActionEvent e) {
 		Command cmd = e.getCommand();
+		
 		switch (cmd.getId()) {
 		case RUN_COMMAND:{
-			System.out.println("click.entrou: "+this.getName());
+			CategoriaItem ctgItem = new CategoriaItem();
+			ctgItem.setNome(this.txNomeIngrediente.getText());
+			ctrlCategoria.cadastrarCatgItem(ctgItem);
+			
+			MainForm form = Menu.getSingleton();
+			form.show();
+		
 			break;
 		}
 		case BACK_COMMAND:{
