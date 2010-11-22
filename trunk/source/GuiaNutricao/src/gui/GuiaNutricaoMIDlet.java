@@ -96,6 +96,7 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
         createRB("Montar Prato", btGroup, form);
         createRB("Perfil Usuário", btGroup, form);
         createRB("Tipo Ingrediente", btGroup, form);
+        createRB("Consultar Calorias", btGroup, form);
         createRB("Refeição", btGroup, form);        
         createRB("Relatório", btGroup, form);
         
@@ -111,7 +112,9 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 	public void actionPerformed(ActionEvent evt) {
 		
 		Command cmd = evt.getCommand();
+		System.out.println(btGroup.getSelectedIndex());
         switch (cmd.getId()) {
+        
         case RUN_COMMAND:
         	switch(btGroup.getSelectedIndex())
 			{        	   
@@ -141,6 +144,11 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 					break;
 				}
 				case 5:{
+					form = new ConsultarCaloriasItens("Consultar Kcal");
+					AddCommandCadBasico(form);
+					break;
+				}
+				case 6:{
 					form = new Refeicao();
 					AddCommandCadBasico(form);
 					break;
