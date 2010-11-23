@@ -1,23 +1,20 @@
 package classe.basica;
 
+import java.util.Date;
+
 public class Usuario {
 	
 	private int Id;
-	public int getId() {
-		return Id;
-	}
-
-	public void setId(int id) {
-		Id = id;
-	}
 	private String nome;
 	private String sobreNome;
-	private char sexo;
+	private int sexo;
 	private TipoDieta tipoDieta;
 	private int idade;
 	private float altura;
 	private float peso;
 	private float pesoEstimado;
+	private Date dtNascimento;
+	private int qtdCaloria;
 	
 	public Usuario(){}
 	
@@ -34,6 +31,25 @@ public class Usuario {
 		this.peso = peso;
 		this.pesoEstimado = pesoEstimado;
 	}
+	
+	
+	
+	public int getQtdCaloria() {
+		return qtdCaloria;
+	}
+
+	public void setQtdCaloria(int qtdCaloria) {
+		this.qtdCaloria = qtdCaloria;
+	}
+
+	public Date getDtNascimento() {
+		return dtNascimento;
+	}
+
+	public void setDtNascimento(Date dtNascimento) {
+		this.dtNascimento = dtNascimento;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -46,10 +62,10 @@ public class Usuario {
 	public void setSobreNome(String sobreNome) {
 		this.sobreNome = sobreNome;
 	}
-	public char getSexo() {
+	public int getSexo() {
 		return sexo;
 	}
-	public void setSexo(char sexo) {
+	public void setSexo(int sexo) {
 		this.sexo = sexo;
 	}
 	public TipoDieta getTipoDieta() {
@@ -82,5 +98,14 @@ public class Usuario {
 	public void setPesoEstimado(float pesoEstimado) {
 		this.pesoEstimado = pesoEstimado;
 	}
+	
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+	
 
 }

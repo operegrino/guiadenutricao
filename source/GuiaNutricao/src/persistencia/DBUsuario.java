@@ -22,10 +22,11 @@ public class DBUsuario {
 	private int tamanho;
 
 
-	public void cadastrarUsuario(Usuario usuario){
+	public boolean cadastrarUsuario(Usuario usuario){
 
-
+        boolean resp = false;
 		try {
+			
 			//Cria recordStore
 			RecordStore rs = SingUsuario.getInstancia();
 
@@ -40,24 +41,29 @@ public class DBUsuario {
 			os.writeInt(usuario.getId());
 			os.writeUTF(usuario.getNome());
 			os.writeUTF(usuario.getSobreNome());
-			os.writeChar(usuario.getSexo());
+			os.writeInt(usuario.getSexo());
 			//usuario.getTipoDieta();
 			os.writeInt(usuario.getIdade());
 			os.writeFloat(usuario.getAltura());
 			os.writeFloat(usuario.getPeso());
 			os.writeFloat(usuario.getPesoEstimado());
+			//os.writeLong(usuario.getDtNascimento());
+			
 			os.close( );
 
 			byte[] data = baos.toByteArray( );
 
 			//Salva objeto
-			rs.addRecord(data, 0, data.length);			
+			rs.addRecord(data, 0, data.length);	
+			resp = true;
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}catch (RecordStoreException e){
 			e.printStackTrace();
 		}
+		
+		return resp;
 
 	}
 

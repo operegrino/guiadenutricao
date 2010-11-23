@@ -10,8 +10,6 @@ import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
 import com.sun.lwuit.events.ActionEvent;
 
-import Util.UtilFuncoes;;
-
 public class AdicionarIngrediente extends MainForm{
 
 	private Label lNome;
@@ -77,14 +75,14 @@ public class AdicionarIngrediente extends MainForm{
 			item.setNome(this.txNome.getText());
 			item.setQtdPorcao(Integer.parseInt(this.txPorcaoGrama.getText()));
 			item.setValorCalorico(Double.parseDouble(this.txValorCalorico.getText()));
-			int cod = UtilFuncoes.capturarId(this.cbTpIngrediente.getLabelForComponent().getText());
-			item.setCodCategoria(cod);
+			//int cod = UtilFuncoes.capturarId(this.cbTpIngrediente.getLabelForComponent().getText());
+			//item.setCodCategoria(cod);
 			System.out.println("01");
 			item.setVitamina(this.txVitamina.getText());
 			
 			
-			Sucesso sucesso = new Sucesso("Item cadastrado com Sucesso!");
-			sucesso.show();
+			//Sucesso sucesso = new Sucesso("Item cadastrado com Sucesso!");
+			//sucesso.show();
 			break;
 		}
 		case BACK_COMMAND:{				
