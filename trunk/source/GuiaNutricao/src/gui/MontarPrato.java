@@ -9,6 +9,8 @@ import com.sun.lwuit.Button;
 import com.sun.lwuit.CheckBox;
 import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Command;
+import com.sun.lwuit.Dialog;
+import com.sun.lwuit.Display;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
@@ -39,8 +41,8 @@ public class MontarPrato extends MainForm{
         this.setTitle(this.getName());
         lNomePrato     = new Label("Nome do Prato");
         txNomePrato    = new TextField();
-        lTipoRefeicao  = new Label("Tipo de RefeiÃ§Ã£o");
-        String[] valor1 = {"Jantar", "AlmoÃ§o"};
+        lTipoRefeicao  = new Label("Tipo de Refeição");
+        String[] valor1 = {"Jantar", "Almoço"};
         cbTpRefeicao   = new ComboBox(valor1);
         lTpIngrediente = new Label("Tipo de Ingrediente");
         String[] valor2= {"Legume","Fruta","Massas"};
@@ -83,7 +85,7 @@ public class MontarPrato extends MainForm{
 		Command cmd = e.getCommand();
 		switch (cmd.getId()) {
 		case RUN_COMMAND:{
-			System.out.println("click.entrou: "+this.getName());
+			salvarPrato();
 			break;
 		}
 		case BACK_COMMAND:{
@@ -93,9 +95,29 @@ public class MontarPrato extends MainForm{
 		}
 		default:{}
 		}
-		
 
-		
+	}
+	
+	public void salvarPrato()
+	{
+		validarPrato();
 	}
 
+	public boolean validarPrato()
+	{
+		boolean resp = false;
+		
+		if((this.txNomePrato.getText() == null) || (this.txNomePrato.getText() == ""))
+		{
+			Dialog.show("Atenção", "Preencha o Nome do Prato", "OK", null);
+   			resp = false;
+		}
+		
+		//(Display.getInstance()).getCurrent().getcom
+		
+		System.out.println( (Display.getInstance()).getCurrent().getComponentCount() );
+		
+		
+		return resp;
+	}
 }

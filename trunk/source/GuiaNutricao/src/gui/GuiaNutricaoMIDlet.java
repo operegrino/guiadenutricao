@@ -3,9 +3,11 @@ package gui;
 import java.io.IOException;
 import java.util.Hashtable;
 
+import com.sun.lwuit.Button;
 import com.sun.lwuit.ButtonGroup;
 import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Command;
+import com.sun.lwuit.Dialog;
 import com.sun.lwuit.Display;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.RadioButton;
@@ -13,6 +15,7 @@ import com.sun.lwuit.TextArea;
 import com.sun.lwuit.events.ActionEvent;
 import com.sun.lwuit.events.ActionListener;
 import com.sun.lwuit.layouts.BorderLayout;
+import com.sun.lwuit.layouts.BoxLayout;
 import com.sun.lwuit.plaf.Style;
 import com.sun.lwuit.plaf.UIManager;
 import com.sun.lwuit.util.Resources;
@@ -84,11 +87,12 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 		Display.init(this);
 		
 		try {
-            Resources r = Resources.open("/theme/guiaNutricao.res");
+            Resources r = Resources.open("/theme/LWUITtheme.res");
             UIManager.getInstance().setThemeProps(r.getTheme(r.getThemeResourceNames()[0]));	        
         } catch (IOException ioe) {
             System.out.println("Não foi possível carregar o tema.");
         }
+        
         
         form = Menu.getSingleton();                
         createRB("Adicionar Ingrediente", btGroup, form);
@@ -111,8 +115,7 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 
 	public void actionPerformed(ActionEvent evt) {
 		
-		Command cmd = evt.getCommand();
-		System.out.println(btGroup.getSelectedIndex());
+		Command cmd = evt.getCommand();		
         switch (cmd.getId()) {
         
         case RUN_COMMAND:
@@ -144,7 +147,7 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 					break;
 				}
 				case 5:{
-					form = new ConsultarCaloriasItens("Consultar Kcal");
+					//form = new ConsultarCaloriasItens("Consultar Kcal");
 					AddCommandCadBasico(form);
 					break;
 				}
@@ -193,7 +196,7 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 	}
 	
 	private String getAboutText() {
-        return "Sobre o Guia de Nutricao";
+        return "Sobre o Guia de Nutrição";
     }
 
 	
