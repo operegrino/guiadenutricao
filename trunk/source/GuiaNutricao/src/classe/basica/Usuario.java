@@ -2,20 +2,28 @@ package classe.basica;
 
 public class Usuario {
 	
+	private int Id;
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
 	private String nome;
 	private String sobreNome;
 	private char sexo;
 	private TipoDieta tipoDieta;
-	private Integer idade;
-	private Float altura;
-	private Float peso;
-	private Float pesoEstimado;
+	private int idade;
+	private float altura;
+	private float peso;
+	private float pesoEstimado;
 	
 	public Usuario(){}
 	
 	public Usuario(String nome, String sobreNome, char sexo,
-			TipoDieta tipoDieta, Integer idade, Float altura, Float peso,
-			Float pesoEstimado) {
+			TipoDieta tipoDieta, int idade, float altura, float peso,
+			float pesoEstimado) {
 		super();
 		this.nome = nome;
 		this.sobreNome = sobreNome;
@@ -50,28 +58,28 @@ public class Usuario {
 	public void setTipoDieta(TipoDieta tipoDieta) {
 		this.tipoDieta = tipoDieta;
 	}
-	public Integer getIdade() {
+	public int getIdade() {
 		return idade;
 	}
-	public void setIdade(Integer idade) {
+	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-	public Float getAltura() {
+	public float getAltura() {
 		return altura;
 	}
-	public void setAltura(Float altura) {
+	public void setAltura(float altura) {
 		this.altura = altura;
 	}
-	public Float getPeso() {
+	public float getPeso() {
 		return peso;
 	}
-	public void setPeso(Float peso) {
+	public void setPeso(float peso) {
 		this.peso = peso;
 	}
-	public Float getPesoEstimado() {
+	public float getPesoEstimado() {
 		return pesoEstimado;
 	}
-	public void setPesoEstimado(Float pesoEstimado) {
+	public void setPesoEstimado(float pesoEstimado) {
 		this.pesoEstimado = pesoEstimado;
 	}
 

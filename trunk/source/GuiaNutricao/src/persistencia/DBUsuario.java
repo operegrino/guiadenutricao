@@ -15,119 +15,107 @@ import javax.microedition.rms.RecordStoreNotOpenException;
 import Util.ArrayList;
 
 import classe.basica.CategoriaItem;
+import classe.basica.Usuario;
 
-
-public class BDCategoriaItem {
+public class DBUsuario {
 
 	private int tamanho;
 
 
-	public void cadastrarCatgItem (CategoriaItem catgItem){
+	public void cadastrarUsuario(Usuario usuario){
 
 
 		try {
 			//Cria recordStore
-			RecordStore rs = SingCatgItem.getInstancia();
+			RecordStore rs = SingUsuario.getInstancia();
 
 			//Cria objeto de conversão para bytes[]
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			DataOutputStream os = new DataOutputStream(baos);
 
 			//seta o id do item
-			catgItem.setId(rs.getNextRecordID());
-			System.out.println(catgItem.getId());
-
+			usuario.setId(rs.getNextRecordID());
 
 			//transforma atributos em bytes[]
-			os.writeInt(catgItem.getId());
-			os.writeUTF(catgItem.getNome());
+			os.writeInt(usuario.getId());
+			os.writeUTF(usuario.getNome());
+			os.writeUTF(usuario.getSobreNome());
+			os.writeChar(usuario.getSexo());
+			//usuario.getTipoDieta();
+			os.writeInt(usuario.getIdade());
+			os.writeFloat(usuario.getAltura());
+			os.writeFloat(usuario.getPeso());
+			os.writeFloat(usuario.getPesoEstimado());
 			os.close( );
 
 			byte[] data = baos.toByteArray( );
 
 			//Salva objeto
-			rs.addRecord(data, 0, data.length);
-			System.out.println("Catg Salva!");
+			rs.addRecord(data, 0, data.length);			
 
 		} catch (IOException e) {
-
 			e.printStackTrace();
 		}catch (RecordStoreException e){
-
 			e.printStackTrace();
 		}
 
 	}
 
-	public CategoriaItem buscarCategoriaItem (int id){
+	public Usuario buscarUsuario(int id){
 
-		CategoriaItem catgItem = new CategoriaItem();
+		Usuario usuario = new Usuario();
 
 		try {
-			RecordStore rs = SingCatgItem.getInstancia();
+			RecordStore rs = SingUsuario.getInstancia();
 
 			byte[] data = rs.getRecord(id);
 			DataInputStream is = new DataInputStream(new ByteArrayInputStream(data));
 
-			catgItem.setId(is.readInt());
-			catgItem.setNome(is.readUTF());
+			usuario.setId(is.readInt());
+			usuario.setNome(is.readUTF());
 			is.close();
 
 		}  catch (RecordStoreException e) {
-
 			e.printStackTrace();
-
 		}catch (IOException e){
-
 			e.printStackTrace();
 		}
-		return catgItem;
+		return usuario;
 	}
 
-	public void excluirCategoriaItem (CategoriaItem catgItem){
+	public void excluirUsuario(Usuario usuario){
 
-		RecordStore rs = SingCatgItem.getInstancia();
-
+		RecordStore rs = SingUsuario.getInstancia();
+		
 		try {
-			rs.deleteRecord(catgItem.getId());
-
+			rs.deleteRecord(usuario.getId());
+			
 		}  catch (RecordStoreException e) {
 
 			e.printStackTrace();
 		}
-		System.out.println("excluido id: " + catgItem.getId());
+		System.out.println("excluido id: " + usuario.getId());
 	}
 
-	public String[] consultarTodasCategoriasItens() {
+	public ArrayList consultarTodosOsUsuarios() {
 
 
-		RecordStore rs = SingCatgItem.getInstancia();
-		CategoriaItem catgItem = new CategoriaItem();
-
-		try {
-			tamanho = rs.getNumRecords();
-		} catch (RecordStoreNotOpenException e1) {
-			e1.printStackTrace();
-		}
-
-		String[] retorno = new String[tamanho];
-		int i = 0;
-
+		RecordStore rs = SingUsuario.getInstancia();
+		Usuario usuario = new Usuario();
+		ArrayList retorno = new ArrayList();
 
 		try{
 			RecordEnumeration re = rs.enumerateRecords(null, null, false);  
 			while (re.hasNextElement()) {  
-				catgItem = this.buscarCategoriaItem(re.nextRecordId());
-				retorno[i] = catgItem.getId()+"- " + catgItem.getNome();
-
-				i++;
+				usuario = this.buscarUsuario(re.nextRecordId());
+				retorno.add(usuario);
 			}
 
 		} catch (InvalidRecordIDException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (RecordStoreException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}  
 		return retorno;
@@ -136,7 +124,7 @@ public class BDCategoriaItem {
 	public void  excluirRS (){
 		try {
 
-			RecordStore.deleteRecordStore("CATEGORIA_ITENS");
+			RecordStore.deleteRecordStore("USUARIO");
 			System.out.println("Excluído");
 
 		} catch (RecordStoreException e) {
@@ -146,6 +134,5 @@ public class BDCategoriaItem {
 
 	}
 
-
-
+	
 }

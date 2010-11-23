@@ -3,29 +3,28 @@ package persistencia;
 import javax.microedition.rms.RecordStore;
 import javax.microedition.rms.RecordStoreException;
 
-public class SingItem {
-	
-	
-	private static RecordStore rsItens;
+public class SingTipoDieta {
 
-	private SingItem() {
+	private static RecordStore rsTpDieta;
+
+	private SingTipoDieta() {
 		
 	}
 
 	public static RecordStore getInstancia() {
 		
 			
-		if (rsItens == null) {
+		if (rsTpDieta == null) {
 			try {
-				rsItens = RecordStore.openRecordStore("ITENS", true);
+				rsTpDieta = RecordStore.openRecordStore("TPDIETA", true);
 			} catch (RecordStoreException e) {
 				e.printStackTrace();
 			}
 		
 		}
 	
-		return rsItens;
-		}
-	
+		return rsTpDieta;
+	}
 
+	
 }
