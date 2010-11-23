@@ -2,7 +2,6 @@ import javax.microedition.midlet.MIDlet;
 import javax.microedition.midlet.MIDletStateChangeException;
 
 import negocio.ControladorCategoriaItem;
-import Util.UtilFuncoes;
 import classe.basica.CategoriaItem;
 
 
@@ -28,7 +27,7 @@ public class TestandoClasseCatgItemMIDlet extends MIDlet {
 		ControladorCategoriaItem ctrlCatg = new ControladorCategoriaItem();
 		
 		CategoriaItem catgItem = new CategoriaItem();
-		UtilFuncoes util = new UtilFuncoes();
+		//UtilFuncoes util = new UtilFuncoes();
 		
 		catgItem.setNome("Frios");
 		CategoriaItem catgItem2 = new CategoriaItem();

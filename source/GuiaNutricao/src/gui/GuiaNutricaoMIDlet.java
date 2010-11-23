@@ -84,7 +84,7 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 		Display.init(this);
 		
 		try {
-            Resources r = Resources.open("/tema/javaTheme.res");
+            Resources r = Resources.open("/theme/guiaNutricao.res");
             UIManager.getInstance().setThemeProps(r.getTheme(r.getThemeResourceNames()[0]));	        
         } catch (IOException ioe) {
             System.out.println("Não foi possível carregar o tema.");

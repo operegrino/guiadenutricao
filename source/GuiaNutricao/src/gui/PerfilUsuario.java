@@ -5,6 +5,8 @@
 
 package gui;
 
+import gov.nist.siplite.header.AuthorizationHeader;
+
 import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Command;
 import com.sun.lwuit.Form;
@@ -12,6 +14,8 @@ import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
 import com.sun.lwuit.events.ActionEvent;
 import com.sun.lwuit.layouts.BoxLayout;
+import classe.basica.Usuario;
+import negocio.ControladorUsuario;
 
 /**
  * @author Jefferson
@@ -34,6 +38,7 @@ public class PerfilUsuario extends MainForm{
     TextField tfPesoAlcan;
     ComboBox cbSexo;
     ComboBox cbTpDieta;
+    private ControladorUsuario controlador;
 
 	public String getName() {
 		// TODO Auto-generated method stub
@@ -50,6 +55,8 @@ public class PerfilUsuario extends MainForm{
     {
     	super();
 
+    	controlador = new ControladorUsuario();
+    	
         this.setTitle(this.getName());
         this.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
         this.setScrollableX(true);
@@ -102,7 +109,7 @@ public class PerfilUsuario extends MainForm{
 		Command cmd = e.getCommand();
 		switch (cmd.getId()) {
 		case RUN_COMMAND:{
-			System.out.println("click.entrou: "+this.getName());
+			cadastrarPerfil();
 			break;
 		}
 		case BACK_COMMAND:{
@@ -111,10 +118,17 @@ public class PerfilUsuario extends MainForm{
 			break;
 		}
 		default:{}
-		}
-		
+		}		
 
-		
+	}
+	
+	public void cadastrarPerfil()
+	{		
+		Usuario usuario = new Usuario();
+		usuario.setNome(this.tfNome.getText());
+		this.controlador.cadastrarUsuario(usuario);
+				
+		System.out.println("Fim: "+this.tfNome.getText());
 	}
   
 

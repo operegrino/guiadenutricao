@@ -13,41 +13,37 @@ import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
 
 import Util.ArrayList;
+import classe.basica.Prato;
 
-import classe.basica.CategoriaItem;
-
-
-public class BDCategoriaItem {
+public class DBPrato {
 
 	private int tamanho;
 
 
-	public void cadastrarCatgItem (CategoriaItem catgItem){
+	public void cadastrarPrato(Prato prato){
 
 
 		try {
 			//Cria recordStore
-			RecordStore rs = SingCatgItem.getInstancia();
+			RecordStore rs = SingPrato.getInstancia();
 
 			//Cria objeto de conversão para bytes[]
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			DataOutputStream os = new DataOutputStream(baos);
 
 			//seta o id do item
-			catgItem.setId(rs.getNextRecordID());
-			System.out.println(catgItem.getId());
-
+			prato.setId(rs.getNextRecordID());
 
 			//transforma atributos em bytes[]
-			os.writeInt(catgItem.getId());
-			os.writeUTF(catgItem.getNome());
+			os.writeInt(prato.getId());
+			os.writeUTF(prato.getNome());
+			//os.writeUTF(prato.getItem());
 			os.close( );
 
 			byte[] data = baos.toByteArray( );
 
 			//Salva objeto
 			rs.addRecord(data, 0, data.length);
-			System.out.println("Catg Salva!");
 
 		} catch (IOException e) {
 
@@ -59,18 +55,18 @@ public class BDCategoriaItem {
 
 	}
 
-	public CategoriaItem buscarCategoriaItem (int id){
+	public Prato buscarPrato(int id){
 
-		CategoriaItem catgItem = new CategoriaItem();
+		Prato prato = new Prato();
 
 		try {
-			RecordStore rs = SingCatgItem.getInstancia();
+			RecordStore rs = SingPrato.getInstancia();
 
 			byte[] data = rs.getRecord(id);
 			DataInputStream is = new DataInputStream(new ByteArrayInputStream(data));
 
-			catgItem.setId(is.readInt());
-			catgItem.setNome(is.readUTF());
+			prato.setId(is.readInt());
+			prato.setNome(is.readUTF());
 			is.close();
 
 		}  catch (RecordStoreException e) {
@@ -81,53 +77,40 @@ public class BDCategoriaItem {
 
 			e.printStackTrace();
 		}
-		return catgItem;
+		return prato;
 	}
 
-	public void excluirCategoriaItem (CategoriaItem catgItem){
+	public void excluirPrato(Prato prato){
 
-		RecordStore rs = SingCatgItem.getInstancia();
+		RecordStore rs = SingPrato.getInstancia();
 
 		try {
-			rs.deleteRecord(catgItem.getId());
+			rs.deleteRecord(prato.getId());
 
 		}  catch (RecordStoreException e) {
 
 			e.printStackTrace();
 		}
-		System.out.println("excluido id: " + catgItem.getId());
+		System.out.println("excluido id: " + prato.getId());
 	}
 
-	public String[] consultarTodasCategoriasItens() {
+	public ArrayList consultarTodosOsPrato(){
 
 
-		RecordStore rs = SingCatgItem.getInstancia();
-		CategoriaItem catgItem = new CategoriaItem();
-
-		try {
-			tamanho = rs.getNumRecords();
-		} catch (RecordStoreNotOpenException e1) {
-			e1.printStackTrace();
-		}
-
-		String[] retorno = new String[tamanho];
-		int i = 0;
-
-
+		RecordStore rs = SingPrato.getInstancia();
+		Prato prato = new Prato();
+        ArrayList retorno = new ArrayList();
+        
 		try{
 			RecordEnumeration re = rs.enumerateRecords(null, null, false);  
 			while (re.hasNextElement()) {  
-				catgItem = this.buscarCategoriaItem(re.nextRecordId());
-				retorno[i] = catgItem.getId()+"- " + catgItem.getNome();
-
-				i++;
+				prato = this.buscarPrato(re.nextRecordId());
+				retorno.add(prato);				
 			}
 
-		} catch (InvalidRecordIDException e) {
-			// TODO Auto-generated catch block
+		} catch (InvalidRecordIDException e) {			
 			e.printStackTrace();
-		} catch (RecordStoreException e) {
-			// TODO Auto-generated catch block
+		} catch (RecordStoreException e) {			
 			e.printStackTrace();
 		}  
 		return retorno;
@@ -136,16 +119,13 @@ public class BDCategoriaItem {
 	public void  excluirRS (){
 		try {
 
-			RecordStore.deleteRecordStore("CATEGORIA_ITENS");
+			RecordStore.deleteRecordStore("PRATO");
 			System.out.println("Excluído");
-
 		} catch (RecordStoreException e) {
-
 			e.printStackTrace();
 		}
 
 	}
-
 
 
 }

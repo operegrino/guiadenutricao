@@ -6,7 +6,16 @@ public class Prato {
 	
 	private Vector item;
 	private String nome;
+	private int Id;
 	
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
 	public Prato(){};
 	
 	public Prato(Vector item, String nome) {
