@@ -4,6 +4,7 @@ import negocio.ControladorCategoriaItem;
 import classe.basica.CategoriaItem;
 
 import com.sun.lwuit.Command;
+import com.sun.lwuit.Dialog;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
@@ -49,6 +50,7 @@ public class TipoIngrediente extends MainForm {
 			ctgItem.setNome(this.txNomeIngrediente.getText());
 			ctrlCategoria.cadastrarCatgItem(ctgItem);
 			
+			Dialog.show("Atenção", "Tipo "+ctgItem.getNome()+" Salvo com Sucesso", "OK", null);			
 			MainForm form = Menu.getSingleton();
 			form.show();
 		

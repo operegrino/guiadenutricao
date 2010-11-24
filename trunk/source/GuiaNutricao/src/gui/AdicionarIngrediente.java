@@ -1,6 +1,7 @@
 package gui;
 
 import negocio.ControladorCategoriaItem;
+import Util.ArrayList;
 import classe.basica.Item;
 
 import com.sun.lwuit.ComboBox;
@@ -22,7 +23,7 @@ public class AdicionarIngrediente extends MainForm{
 	private ComboBox cbTpIngrediente;
 	private Label lPorcaoGrama;
 	private TextField txPorcaoGrama;
-	private String [] arrayCatg;
+	private String[] arrayCatg;
 	private ControladorCategoriaItem ctrlCatg = new ControladorCategoriaItem();
 	private Item item = new Item();
 	
@@ -38,7 +39,7 @@ public class AdicionarIngrediente extends MainForm{
 		txValorCalorico = new TextField();
 		lTpIngrediente  = new Label("Tipo de Ingrediente");
 		
-		arrayCatg = this.ctrlCatg.consultarTodasCategoriasItens();
+		arrayCatg = this.ctrlCatg.consultarTodas();		
 		this.cbTpIngrediente = new ComboBox(arrayCatg);
 		
 		lPorcaoGrama    = new Label("Porção em Grama");

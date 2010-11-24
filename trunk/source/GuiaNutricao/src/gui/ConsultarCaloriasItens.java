@@ -34,7 +34,7 @@ public class ConsultarCaloriasItens extends MainForm {
 		 try {
 			 
 			 this.lbDescricao = new Label("Informe o Tipo:");
-			 this.arrayCatg = this.ctrlCatg.consultarTodasCategoriasItens();
+			 this.arrayCatg = this.ctrlCatg.consultarTodas();
 			 this.cbTpIngrediente = new ComboBox(arrayCatg);
 			 arrayItensCtag = this.ctrlItem.consultarPorCatg(5);
 			 int i = 0;
