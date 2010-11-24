@@ -5,22 +5,29 @@
 
 package gui;
 
+import java.io.IOException;
+
+import javax.microedition.rms.InvalidRecordIDException;
+import javax.microedition.rms.RecordStoreException;
+
 import Util.ArrayList;
+import Util.UtilFuncoes;
 
 import com.sun.lwuit.Button;
 import com.sun.lwuit.CheckBox;
 import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Command;
+import com.sun.lwuit.Container;
 import com.sun.lwuit.Dialog;
 import com.sun.lwuit.Display;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
-import com.sun.lwuit.List;
 import com.sun.lwuit.TextField;
 import com.sun.lwuit.events.ActionEvent;
+import com.sun.lwuit.layouts.GridLayout;
+
 import negocio.ControladorCategoriaItem;
 import classe.basica.CategoriaItem;
-import com.sun.lwuit.Container;
 
 /**
  * @author Jefferson
@@ -28,9 +35,6 @@ import com.sun.lwuit.Container;
 public class MontarPrato extends MainForm{
 
 
-	Container cc = new Container();
-	
-	
 	Label lNomePrato;
 	TextField txNomePrato;
 	Label lIngrediente;
@@ -65,10 +69,15 @@ public class MontarPrato extends MainForm{
         ckValor2       = new CheckBox("Peixe");
         lValorCalorico = new Label("Valor Calorico: 122");
         
-        Command cmd    = new Command("Pesquisar", CMD_FILTRAR);
+        Command cmd    = new Command("Add.Ingrediente", CMD_FILTRAR);
         btFiltrar      = new Button(cmd);
-        this.addCommand(cmd);
+//        this.addCommand(cmd);
         //btFiltrar.setTextPosition(CENTER);
+        
+        //GridLayout grid = new GridLayout(2, 2);
+        //this.setLayout(grid);
+        //this.addComponent(new CheckBox("value 1"));
+        //this.addComponent(new CheckBox("value 2"));
         
         this.addComponent(lNomePrato);
         this.addComponent(txNomePrato);
@@ -115,7 +124,7 @@ public class MontarPrato extends MainForm{
 			break;
 		}
 		case CMD_FILTRAR:{
-			filtarIngrediente();
+			filtarIngrediente();			
 		}
 		default:{}
 		}
@@ -124,9 +133,26 @@ public class MontarPrato extends MainForm{
 	
 	public void filtarIngrediente()
 	{
-		String aux = this.cbTpIngrediente.getSelectedItem().toString();		
-		String pk  = aux.substring(0, aux.indexOf('-'));
-		// chamar o método de filtro.
+		if(this.cbTpIngrediente.size() > 0)
+		{
+			int pk = UtilFuncoes.capturarId(this.cbTpIngrediente.getSelectedItem().toString());
+			
+			try {
+				FiltroIngrediente ingr = new FiltroIngrediente(pk);
+			} catch (NumberFormatException e) {
+				
+				e.printStackTrace();
+			} catch (InvalidRecordIDException e) {
+				
+				e.printStackTrace();
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			} catch (RecordStoreException e) {
+				
+				e.printStackTrace();
+			}
+		}
 		
 		
 	}

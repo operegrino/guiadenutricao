@@ -6,6 +6,8 @@ import javax.microedition.rms.InvalidRecordIDException;
 import javax.microedition.rms.RecordStoreException;
 import javax.microedition.rms.RecordStoreNotOpenException;
 
+import com.sun.lwuit.Dialog;
+
 import persistencia.BDItem;
 import Util.ArrayList;
 import classe.basica.Item;
@@ -19,29 +21,27 @@ public class ControladorItem {
 		 BDItem = new  BDItem ();
 	}
 
-   	public void cadastrarItem (Item item){
+   	public boolean cadastrarItem (Item item){
    		
-   		if(item.getNome().equals("")){
+   		boolean value = false;
+   		if((item.getNome() == null) && (item.getNome() == "")){
 		
-   			System.out.println("Preencha o Nome!");
+   			Dialog.show("Atenção", "Preencha o Nome", "OK", null);
    			
 		}else if (item.getQtdPorcao() <= 0){
-			
-			System.out.println(" Qtd Porção inválida!");
+			Dialog.show("Atenção", "Qtd Porção inválida", "OK", null);
 			
 		}else if (item.getValorCalorico() <= 0){
-			
-			System.out.println("Valor calórico inválida!");
+			Dialog.show("Atenção", "Valor calórico inválida", "OK", null);
 			
 		}else if (item.getCodCategoria() < 0){
-			
-			System.out.println("Preencha categoria!");
+			Dialog.show("Atenção", "Preencha categoria", "OK", null);
 			
 		}else {
 			
-			BDItem.cadastrarItem(item);
-			
+			value = BDItem.cadastrarItem(item);			
 		}
+   		return value;
 	}
 	
 	public void excluirItem (Item item) throws RecordStoreNotOpenException, InvalidRecordIDException, RecordStoreException{

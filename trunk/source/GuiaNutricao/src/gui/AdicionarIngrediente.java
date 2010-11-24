@@ -1,11 +1,14 @@
 package gui;
 
 import negocio.ControladorCategoriaItem;
+import negocio.ControladorItem;
 import Util.ArrayList;
+import Util.UtilFuncoes;
 import classe.basica.Item;
 
 import com.sun.lwuit.ComboBox;
 import com.sun.lwuit.Command;
+import com.sun.lwuit.Dialog;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.TextField;
@@ -25,6 +28,7 @@ public class AdicionarIngrediente extends MainForm{
 	private TextField txPorcaoGrama;
 	private String[] arrayCatg;
 	private ControladorCategoriaItem ctrlCatg = new ControladorCategoriaItem();
+	private ControladorItem contItem = new ControladorItem();
 	private Item item = new Item();
 	
 	public AdicionarIngrediente()
@@ -71,19 +75,19 @@ public class AdicionarIngrediente extends MainForm{
 	public void actionPerformed(ActionEvent e) {
 		Command cmd = e.getCommand();
 		switch (cmd.getId()) {
-		case RUN_COMMAND:{
-			System.out.println("click.entrou");
+		case RUN_COMMAND:{			
 			item.setNome(this.txNome.getText());
 			item.setQtdPorcao(Integer.parseInt(this.txPorcaoGrama.getText()));
 			item.setValorCalorico(Double.parseDouble(this.txValorCalorico.getText()));
-			//int cod = UtilFuncoes.capturarId(this.cbTpIngrediente.getLabelForComponent().getText());
-			//item.setCodCategoria(cod);
-			System.out.println("01");
+			int cod = UtilFuncoes.capturarId(this.cbTpIngrediente.getSelectedItem().toString());
+			item.setCodCategoria(cod);			
 			item.setVitamina(this.txVitamina.getText());
 			
-			
-			//Sucesso sucesso = new Sucesso("Item cadastrado com Sucesso!");
-			//sucesso.show();
+			if(contItem.cadastrarItem(item)){
+				Dialog.show("Atenção", "Item "+item.getNome()+" cadastrado com Sucesso", "OK", null);
+				MainForm f = Menu.getSingleton();
+				f.show();								
+			}			
 			break;
 		}
 		case BACK_COMMAND:{				
