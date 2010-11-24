@@ -98,29 +98,19 @@ public class BDCategoriaItem {
 		System.out.println("excluido id: " + catgItem.getId());
 	}
 
-	public String[] consultarTodasCategoriasItens() {
+	public ArrayList consultarTodasCategoriasItens() {
 
 
 		RecordStore rs = SingCatgItem.getInstancia();
 		CategoriaItem catgItem = new CategoriaItem();
-
-		try {
-			tamanho = rs.getNumRecords();
-		} catch (RecordStoreNotOpenException e1) {
-			e1.printStackTrace();
-		}
-
-		String[] retorno = new String[tamanho];
-		int i = 0;
-
-
+  
+		ArrayList lista = new ArrayList();
+		
 		try{
 			RecordEnumeration re = rs.enumerateRecords(null, null, false);  
 			while (re.hasNextElement()) {  
 				catgItem = this.buscarCategoriaItem(re.nextRecordId());
-				retorno[i] = catgItem.getId()+"- " + catgItem.getNome();
-
-				i++;
+				lista.add(catgItem);				
 			}
 
 		} catch (InvalidRecordIDException e) {
@@ -130,7 +120,7 @@ public class BDCategoriaItem {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
-		return retorno;
+		return lista;
 	}
 
 	public void  excluirRS (){

@@ -24,7 +24,7 @@ public class Menu extends MainForm {
 	}
 	
 	public String getName() {		
-		return "Guia de Nutrição";
+		return "Guia Nutricao";
 	}
 
 	protected void execute(Form f) {
