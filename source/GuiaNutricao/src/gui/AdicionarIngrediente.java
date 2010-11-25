@@ -2,7 +2,6 @@ package gui;
 
 import negocio.ControladorCategoriaItem;
 import negocio.ControladorItem;
-import Util.ArrayList;
 import Util.UtilFuncoes;
 import classe.basica.Item;
 
@@ -28,7 +27,7 @@ public class AdicionarIngrediente extends MainForm{
 	private TextField txPorcaoGrama;
 	private String[] arrayCatg;
 	private ControladorCategoriaItem ctrlCatg = new ControladorCategoriaItem();
-	private ControladorItem contItem = new ControladorItem();
+	private ControladorItem ctrlItem = new ControladorItem();
 	private Item item = new Item();
 	
 	public AdicionarIngrediente()
@@ -83,11 +82,13 @@ public class AdicionarIngrediente extends MainForm{
 			item.setCodCategoria(cod);			
 			item.setVitamina(this.txVitamina.getText());
 			
-			if(contItem.cadastrarItem(item)){
-				Dialog.show("Atenção", "Item "+item.getNome()+" cadastrado com Sucesso", "OK", null);
-				MainForm f = Menu.getSingleton();
-				f.show();								
-			}			
+			ctrlItem.cadastrarItem(item);
+			
+			Dialog.show("Atenção", "Item " +item.getNome()+ " salvo com sucesso.", "OK", null);	
+			
+			//voltar
+			MainForm f = Menu.getSingleton();
+			f.show();
 			break;
 		}
 		case BACK_COMMAND:{				

@@ -49,7 +49,7 @@ public class TipoIngrediente extends MainForm {
 			CategoriaItem ctgItem = new CategoriaItem();
 			ctgItem.setNome(this.txNomeIngrediente.getText());
 			ctrlCategoria.cadastrarCatgItem(ctgItem);
-			
+
 			Dialog.show("Atenção", "Tipo "+ctgItem.getNome()+" Salvo com Sucesso", "OK", null);			
 			MainForm form = Menu.getSingleton();
 			form.show();
@@ -63,8 +63,6 @@ public class TipoIngrediente extends MainForm {
 		}
 		default:{}
 		}
-		
-		
 	}
 	
 	

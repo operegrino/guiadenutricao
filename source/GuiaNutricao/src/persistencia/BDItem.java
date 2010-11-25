@@ -110,6 +110,7 @@ public class BDItem {
 			while (re.hasNextElement()) {  
 				item = this.buscarItem(re.nextRecordId());
 				retorno.add(item);
+				System.out.println(item.getNome());
 			}
 
 		} catch (InvalidRecordIDException e) {
@@ -146,7 +147,7 @@ public class BDItem {
 
 		//criando filtro	
 		filter = this.criarFiltroCategoria(idCatg);
-
+		
 		RecordEnumeration enum = rs.enumerateRecords(filter, null, false);
 		int tamanho = enum.numRecords();
 		String[] retorno = new String[tamanho];
@@ -204,6 +205,7 @@ public class BDItem {
 
 		};
 		return filter;
+	
 	}
 
 
