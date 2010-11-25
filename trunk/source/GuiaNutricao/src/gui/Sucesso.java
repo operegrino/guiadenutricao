@@ -2,12 +2,16 @@ package gui;
 
 
 
-import com.sun.lwuit.Command;
+import classe.basica.CategoriaItem;
+
+
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
 import com.sun.lwuit.events.ActionEvent;
 
 public class Sucesso extends MainForm {
+	
+
 	
 	private Label lblmsg = new Label();
 	
@@ -27,23 +31,8 @@ public class Sucesso extends MainForm {
 	
 	
 	public void actionPerformed(ActionEvent e) {
-		Command cmd = e.getCommand();
+
 		
-			switch (cmd.getId()) {
-			case RUN_COMMAND:{
-				
-				
-				break;
-			}
-			case BACK_COMMAND:{
-				MainForm f = Menu.getSingleton();
-				f.show();
-				break;
-			}
-			default:{
-			
-			}
-		   }
 	}
 
 	protected void execute(Form f) {

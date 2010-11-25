@@ -100,7 +100,7 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
         createRB("Montar Prato", btGroup, form);
         createRB("Perfil Usuário", btGroup, form);
         createRB("Tipo Ingrediente", btGroup, form);
-        createRB("Consultar Calorias", btGroup, form);
+        createRB("Consultar Calorias/Itens", btGroup, form);
         createRB("Refeição", btGroup, form);        
         createRB("Relatório", btGroup, form);
         
@@ -147,7 +147,8 @@ public class GuiaNutricaoMIDlet extends MIDlet implements ActionListener{
 					break;
 				}
 				case 5:{
-					//form = new ConsultarCaloriasItens("Consultar Kcal");
+					
+					form = new ConsultarCaloriasItens("Consultar Itens/Kcal");
 					AddCommandCadBasico(form);
 					break;
 				}

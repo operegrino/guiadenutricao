@@ -10,9 +10,9 @@ import negocio.ControladorItem;
 import Util.UtilFuncoes;
 
 import com.sun.lwuit.ComboBox;
+import com.sun.lwuit.Command;
 import com.sun.lwuit.Form;
 import com.sun.lwuit.Label;
-import com.sun.lwuit.TextArea;
 import com.sun.lwuit.events.ActionEvent;
 
 public class ConsultarCaloriasItens extends MainForm {
@@ -22,42 +22,23 @@ public class ConsultarCaloriasItens extends MainForm {
 	 private ComboBox cbTpIngrediente;
 	 private Label lbDescricao;
 	 private String [] arrayCatg;
-	 private String [] arrayItensCtag;
-	 private UtilFuncoes util = new UtilFuncoes();
-	 private Label lbTeste;
-	 private TextArea txtarea;
+	
+	
+
 	 
 	 public ConsultarCaloriasItens (){}
 	 
 	 public ConsultarCaloriasItens(String title){
+		      super();
 		
-		 try {
 			 
 			 this.lbDescricao = new Label("Informe o Tipo:");
 			 this.arrayCatg = this.ctrlCatg.consultarTodas();
 			 this.cbTpIngrediente = new ComboBox(arrayCatg);
-			 arrayItensCtag = this.ctrlItem.consultarPorCatg(5);
-			 int i = 0;
-			while (i < arrayItensCtag.length){
-				
-				System.out.println(arrayItensCtag[i]);
-				i++;
-			}
-			
 			 this.addComponent(lbDescricao);
 			 this.addComponent(cbTpIngrediente);
 			 this.show();
-				
-		} catch (InvalidRecordIDException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RecordStoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			 this.addCommandListener(this);
 	 }
 	
 	protected void execute(Form f) {
@@ -66,7 +47,44 @@ public class ConsultarCaloriasItens extends MainForm {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		Command cmd = e.getCommand();
+		
+		switch (cmd.getId()) {
+		
+		case RUN_COMMAND:{
+			try {
+				
+				//System.out.println("entrou");
+				int id = UtilFuncoes.capturarId((String)this.cbTpIngrediente.getSelectedItem());
+				System.out.println(id);
+				int tamanho = ctrlItem.consultarPorCatg(id).length;
+				System.out.println(tamanho);
+				String[] itens = new String[tamanho];
+				itens = ctrlItem.consultarPorCatg(id);
+				
+				ResultadoPesquisa rp = new ResultadoPesquisa(itens);
+				rp.show();
+					
+			} catch (InvalidRecordIDException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (RecordStoreException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		}
+		case BACK_COMMAND:{				
+			MainForm f = Menu.getSingleton();
+			f.show();
+			break;
+		}
+		default:{}
+		}
+		
 		
 	}
 

@@ -64,7 +64,7 @@ public class ControladorCategoriaItem {
 				value[i] = item.getId()+"-"+item.getNome();
 			}
 			
-			System.out.println(value.length);
+			//System.out.println(value.length);
 			
 			return value;
 	 }
